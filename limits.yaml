@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: limitrange 
+spec:
+  limits:
+  - type: Pod                      #指定整个pod的资源limits
+    min:                           #pod中所有容器的Requests值的总和的下限
+      cpu: 50m
+      memory: 5Mi
+    max:                           #pod中所有容器的Limits值的总和的上限
+      cpu: 1
+      memory: 1Gi
+  - type: Container                #指定容器的资源限制
+    defaultRequest:                #容器Requests默认值
+      cpu: 100m
+      memory: 10Mi
+    default:                       #容器Limits默认值
+      cpu: 200m
+      memory: 100Mi
+    min:                           #pod中所有容器的Requests值的下限
+      cpu: 50m
+      memory: 5Mi
+    max:                           #pod中所有容器的Limits值的上限
+      cpu: 1
+      memory: 1Gi
+    maxLimitRequestRatio:          #每种资源Requests与Limits的最大比值
+      cpu: 4
+      memory: 10
+  - type: PersistentVolumeClaim    #指定请求PVC存储容量的最小值和最大值
+    min:
+      storage: 1Gi
+    max:
+      storage: 10Gi

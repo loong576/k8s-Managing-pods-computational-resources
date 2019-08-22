@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: busybox
+spec:
+  selector:
+    matchLabels:
+      env: prod
+  replicas: 10 
+  template:
+    metadata:
+      labels:
+        env: prod
+    spec:
+      containers:
+      - name: busybox
+        image: busybox
+        args:
+        - /bin/sh
+        - -c
+        - sleep 60000
+      nodeSelector:
+        node: node01

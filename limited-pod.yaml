@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: limited-pod
+spec:
+  containers:
+  - image: busybox
+    command: ["sleep","600000"]
+    name: busybox 
+    resources:
+      requests:         #资源申请
+        cpu: 200m       #容器申请200毫核(一个CPU核心时间的1/5)
+        memory: 80Mi    #容器申请80M内存
+      limits:           #资源限制
+        cpu: 2          #容器最大允许使用2核CPU
+        memory: 2Gi     #容器最大允许使用2GB内存
+  nodeName: node01

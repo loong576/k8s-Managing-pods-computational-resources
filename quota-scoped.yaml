@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: scoped-quota 
+spec:
+  scopes:
+  - BestEffort
+  - NotTerminating
+  hard:
+    pods: 4

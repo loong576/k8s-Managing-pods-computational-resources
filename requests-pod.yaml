@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: requests-pod
+spec:
+  containers:
+  - image: busybox
+    name: busybox 
+    args:
+    - /bin/sh
+    - -c
+    - sleep 60000
+    resources:
+      requests:          #资源申请
+        cpu: 1           #容器申请一个CPU核心时间
+        memory: 80Mi    #容器申请80M内存
+  nodeName: node01
